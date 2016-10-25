@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="VerifyCodeView">
+        <attr name="textColor" format="color|reference" />
+        <attr name="textSize" format="integer" />
+        <attr name="lineWidth" format="dimension" />
+        <attr name="font" format="string|reference" />
+    </declare-styleable>
+</resources>
