@@ -113,7 +113,6 @@ public class VerifyCodeView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-//        //在View上点击时弹出软键盘
         super.onTouchEvent(event);
         requestFocus();//must have focus to show the keyboard
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -128,7 +127,7 @@ public class VerifyCodeView extends View {
     }
     @Override
     public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
-        //定义软键盘样式为数字键盘
+        //define keyboard to number keyboard
         BaseInputConnection fic = new BaseInputConnection(this, false);
         outAttrs.actionLabel = null;
         outAttrs.inputType = InputType.TYPE_CLASS_NUMBER;
@@ -139,13 +138,12 @@ public class VerifyCodeView extends View {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         Log.i(TAG," keycode == "+keyCode);
         if (codeBuilder==null)codeBuilder=new StringBuilder();
-        //接收按键事件，67是删除键(backspace),7-16就是0-9
+        //67 is backspace,7-16 are 0-9
         if (keyCode == 67 && codeBuilder.length() > 0) {
             codeBuilder.deleteCharAt(codeBuilder.length() - 1);
             if (listener!=null){
                 listener.afterTextChanged(codeBuilder.toString());
             }
-            //重新绘图
             invalidate();
         } else if (keyCode >= 7 && keyCode <= 16 && codeBuilder.length() < textSize) {
             codeBuilder.append(keyCode - 7);
@@ -154,7 +152,7 @@ public class VerifyCodeView extends View {
             }
             invalidate();
         }
-        //到了4位自动隐藏软键盘
+        //hide soft keyboard
         if (codeBuilder.length() >= textSize||keyCode==66) {
             InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getWindowToken(), 0);
@@ -210,7 +208,7 @@ public class VerifyCodeView extends View {
 
     /**
      * get verify code string
-     * @return
+     * @return code
      */
     public String getText(){
         return codeBuilder!=null?codeBuilder.toString():"";
@@ -218,7 +216,7 @@ public class VerifyCodeView extends View {
 
     /**
      * set verify code (must less than 4 letters)
-     * @param code
+     * @param code code
      */
     public void setText(String code){
         if (code==null)
@@ -237,7 +235,7 @@ public class VerifyCodeView extends View {
 
     /**
      * calculate every points
-     * @param textSize
+     * @param textSize code length
      */
     private void calculateStartAndEndPoint(int textSize){
         solidPoints = new PointF[textSize];
@@ -260,7 +258,7 @@ public class VerifyCodeView extends View {
         return textColor;
     }
 
-    public void setTextColor(@ColorRes int textColor) {
+    public void setTextColor(int textColor) {
         this.textColor = textColor;
     }
 
@@ -270,7 +268,7 @@ public class VerifyCodeView extends View {
 
     /**
      * set the code's length
-     * @param textSize
+     * @param textSize code length
      */
     public void setTextSize(int textSize) {
         if (textSize<2)throw new IllegalArgumentException("Text size must more than 1!");
@@ -280,7 +278,7 @@ public class VerifyCodeView extends View {
 
     /**
      * custom font
-     * @param typeface
+     * @param typeface font
      */
     public void setFont(Typeface typeface) {
         this.typeface = typeface;
