@@ -32,7 +32,7 @@
         <com.github.irvingryan.VerifyCodeView
             android:layout_width="wrap_content"
             android:id="@+id/etOTP"
-            app:textColor="@color/Color_ffffff"
+            app:vcTextColor="@color/Color_ffffff"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"/>
 

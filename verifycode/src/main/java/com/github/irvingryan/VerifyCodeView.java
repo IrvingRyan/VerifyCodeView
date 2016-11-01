@@ -82,11 +82,11 @@ public class VerifyCodeView extends View {
     private void init(Context context, AttributeSet attrs) {
         if (attrs!=null){
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.VerifyCodeView);
-            textColor = typedArray.getColor(R.styleable.VerifyCodeView_textColor, textColor);
-            textSize = typedArray.getInt(R.styleable.VerifyCodeView_textSize, textSize);
+            textColor = typedArray.getColor(R.styleable.VerifyCodeView_vcTextColor, textColor);
+            textSize = typedArray.getInt(R.styleable.VerifyCodeView_vcTextSize, textSize);
             if (textSize<2)throw new IllegalArgumentException("Text size must more than 1!");
-            lineWidth=typedArray.getDimensionPixelSize(R.styleable.VerifyCodeView_lineWidth, lineWidth);
-            String font = typedArray.getString(R.styleable.VerifyCodeView_font);
+            lineWidth=typedArray.getDimensionPixelSize(R.styleable.VerifyCodeView_vcLineWidth, lineWidth);
+            String font = typedArray.getString(R.styleable.VerifyCodeView_vcFont);
             if (font!=null)
                 typeface=Typeface.createFromAsset(context.getAssets(),font);
             typedArray.recycle();
