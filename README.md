@@ -1,2 +1,3 @@
 # VerifyCodeView
-An Android custom view which is used for inputing OTP code
+An Android custom view which is used for inputting OTP code.
+

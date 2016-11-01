@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">VerifyCodeView</string>
+    <string name="one_time_password_hint">A One time password has been sent to \n+86 187 xxxx xxxx xxx via SMS</string>
+    <string name="Verify">Verify</string>
+    <string name="ResendOTP">RESEND OTP</string>
+    <string name="sms_verify_code_not_this_number">RE-ENTER MOBILE NUMBER</string>
 </resources>
