@@ -13,21 +13,21 @@ An Android custom view which is used for inputting OTP code.
 
 2. in your layout.xml
 
-    *Default*
+    **Default**
     ```
         <com.github.irvingryan.VerifyCodeView
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"/>
     ```
-    *Custom*
+    **Custom**
     
     ######Attributes
     |custom attributes|format|more|
-        | :---:|:---:|:---: |
-        |vcTextColor|color|your text color|
-        |vcTextSize|integer|code's lenght|
-        |vcFont|string|font path in assets|
-        |vcLineWidth|dimension|background line's width|
+    | :---:|:---:|:---: |
+    |vcTextColor|color|your text color|
+    |vcTextSize|integer|code's lenght|
+    |vcFont|string|font path in assets|
+    |vcLineWidth|dimension|background line's width|
     ######xml code
     ```
      <!--your text color-->
