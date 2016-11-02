@@ -50,6 +50,7 @@ An Android custom view which is used for inputting OTP code.
                 }
             });
     ```
+
 ##Licence
  Copyright 2016 IrvingRyan
 
