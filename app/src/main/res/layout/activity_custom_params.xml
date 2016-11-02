@@ -33,6 +33,9 @@
             android:layout_width="wrap_content"
             android:id="@+id/etOTP"
             app:vcTextColor="@color/Color_ffffff"
+            app:vcTextSize="6"
+            app:vcFont="@string/my_font"
+            app:vcLineWidth="@dimen/px_4.0_dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"/>
 
@@ -52,8 +55,8 @@
             android:layout_height="@dimen/px_40.0_dp"
             android:background="@drawable/button_selector"
             android:text="@string/Verify"
-            android:onClick="VerifyOtp"
             android:textAllCaps="false"
+            android:onClick="VerifyOtp"
             android:textColor="@android:color/background_dark"
             android:textSize="@dimen/px_14.0_dp" />
 

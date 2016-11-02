@@ -15,7 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".VerifyOtpActivity"></activity>
+        <activity android:name=".VerifyOtpActivity"
+            android:theme="@style/MyTheme"/>
+        <activity android:name=".CustomParamsActivity"
+            android:theme="@style/MyTheme"></activity>
     </application>
 
 </manifest>
