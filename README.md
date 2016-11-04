@@ -9,7 +9,7 @@ An Android custom view which is used for inputting OTP code.
 
 1. Include the library as local library project.
 
-    `compile 'com.github.irvingryan:verifycodeview:1.0.1'`
+    `compile 'com.github.irvingryan:verifycodeview:1.0.2'`
 
 2. in your layout.xml
 
