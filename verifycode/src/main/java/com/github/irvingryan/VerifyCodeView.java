@@ -21,13 +21,13 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 
+import com.github.irvingryan.utils.UIUtils;
+
 /**
  * Created by yanwentao on 2016/10/20 0020.
  */
 
 public class VerifyCodeView extends View {
-    //wrap content 's width
-    private static final int DEFAULT_WIDTH=600;
     //wrap content 's height
     private static final int DEFAULT_HEIGHT=200;
     private int mWidth;
@@ -169,10 +169,10 @@ public class VerifyCodeView extends View {
         mWidth = MeasureSpec.getSize(widthMeasureSpec);
         mHeight = MeasureSpec.getSize(heightMeasureSpec);
         if (widthMode==MeasureSpec.AT_MOST){
-            mWidth=DEFAULT_WIDTH;
+            mWidth= UIUtils.getWidth(getContext())*2/3;
         }
         if (heightMode==MeasureSpec.AT_MOST){
-            mHeight=DEFAULT_HEIGHT;
+            mHeight=UIUtils.getWidth(getContext())/4;
         }
 
         //calculate line's length

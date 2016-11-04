@@ -56,7 +56,6 @@
             android:background="@drawable/button_selector"
             android:text="@string/Verify"
             android:textAllCaps="false"
-            android:onClick="VerifyOtp"
             android:textColor="@android:color/background_dark"
             android:textSize="@dimen/px_14.0_dp" />
 
