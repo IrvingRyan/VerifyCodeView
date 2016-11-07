@@ -5,5 +5,9 @@
         <attr name="vcTextSize" format="integer" />
         <attr name="vcLineWidth" format="dimension" />
         <attr name="vcFont" format="string|reference" />
+        <attr name="vcLineStyle" >
+            <enum name="noLine" value="0" />
+            <enum name="underText" value="1" />
+        </attr>
     </declare-styleable>
 </resources>
