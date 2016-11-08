@@ -10,6 +10,7 @@ import android.graphics.PointF;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.ColorRes;
+import android.support.annotation.IntDef;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -23,23 +24,22 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.github.irvingryan.utils.UIUtils;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 /**
  * Created by yanwentao on 2016/10/20 0020.
  */
 
 public class VerifyCodeView extends View {
-    //wrap content 's height
-    private static final int DEFAULT_HEIGHT=200;
+    private String TAG="VerifyCodeView";
     private int mWidth;
 
     private int mHeight;
     //the code builder
     private StringBuilder codeBuilder;
-    private String TAG="VerifyCodeView";
-    //the paint between two solid lines
-    private Paint blankPaint;
     //the paint to draw solid lines
-    private Paint solidPaint;
+    private Paint linePaint;
     //the paint to draw text
     private Paint textPaint;
     //text font
@@ -56,9 +56,19 @@ public class VerifyCodeView extends View {
     private int lineWidth=5;
 
     private PointF[] solidPoints;
-    private PointF[] blankPoints;
 
 
+    public static final int INPUT_NO_LINE=0;
+
+    public static final int INPUT_LINE_UNDER_TEXT=1;
+
+    @IntDef({INPUT_NO_LINE, INPUT_LINE_UNDER_TEXT})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface LineStyle {
+    }
+    @LineStyle private int lineStyle=INPUT_NO_LINE;
+
+    private int mLinePosY;
     public VerifyCodeView(Context context) {
         super(context);
         init(context,null);
@@ -89,18 +99,24 @@ public class VerifyCodeView extends View {
             String font = typedArray.getString(R.styleable.VerifyCodeView_vcFont);
             if (font!=null)
                 typeface=Typeface.createFromAsset(context.getAssets(),font);
+            switch (typedArray.getInt(R.styleable.VerifyCodeView_vcLineStyle, INPUT_NO_LINE)) {
+                case INPUT_NO_LINE:
+                    lineStyle = INPUT_NO_LINE;
+                    break;
+
+                case INPUT_LINE_UNDER_TEXT:
+                    lineStyle = INPUT_LINE_UNDER_TEXT;
+                    break;
+            }
             typedArray.recycle();
         }
         if (codeBuilder==null)
             codeBuilder = new StringBuilder();
 
-        blankPaint = new Paint();
-        blankPaint.setColor(Color.TRANSPARENT);
-
-        solidPaint = new Paint();
-        solidPaint.setColor(textColor);
-        solidPaint.setAntiAlias(true);
-        solidPaint.setStrokeWidth(lineWidth);
+        linePaint = new Paint();
+        linePaint.setColor(textColor);
+        linePaint.setAntiAlias(true);
+        linePaint.setStrokeWidth(lineWidth);
 
         textPaint=new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setColor(textColor);
@@ -117,7 +133,7 @@ public class VerifyCodeView extends View {
         requestFocus();//must have focus to show the keyboard
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             // touch down
-            Log.d(TAG, "ACTION_DOWN");
+//            Log.d(TAG, "ACTION_DOWN");
             // show the keyboard so we can enter text
             InputMethodManager imm = (InputMethodManager) getContext()
                     .getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -136,7 +152,7 @@ public class VerifyCodeView extends View {
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        Log.i(TAG," keycode == "+keyCode);
+//        Log.i(TAG," keycode == "+keyCode);
         if (codeBuilder==null)codeBuilder=new StringBuilder();
         //67 is backspace,7-16 are 0-9
         if (keyCode == 67 && codeBuilder.length() > 0) {
@@ -162,7 +178,7 @@ public class VerifyCodeView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        Log.i(TAG,"onMeasure");
+//        Log.i(TAG,"onMeasure");
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
@@ -195,14 +211,29 @@ public class VerifyCodeView extends View {
         if (codeBuilder==null)return;
         int inputLength=codeBuilder.length();
         Paint.FontMetricsInt fontMetricsInt = textPaint.getFontMetricsInt();
-        int baseLine=Math.abs(-fontMetricsInt.bottom-fontMetricsInt.top);
-        for (int i=0;i<textSize;i++){
-            if (inputLength>i){
-                canvas.drawText(codeBuilder.toString(), i,i+1, solidPoints[i].y-solidLine/2,mHeight/2+baseLine/2,textPaint);
-            }else {
-                canvas.drawLine(solidPoints[i].x,mHeight/2,solidPoints[i].y,mHeight/2,solidPaint);
-            }
-            canvas.drawLine(blankPoints[i].x,mHeight/2,blankPoints[i].y,mHeight/2,blankPaint);
+        //text's vertical center is view's center
+        int baseLine=mHeight/2 + (fontMetricsInt.bottom - fontMetricsInt.top)/2 - fontMetricsInt.bottom;
+        switch (lineStyle){
+            case INPUT_NO_LINE:
+                mLinePosY=mHeight/2;
+                for (int i=0;i<textSize;i++){
+                    if (inputLength>i){
+                        canvas.drawText(codeBuilder.toString(), i,i+1, solidPoints[i].y-solidLine/2,baseLine,textPaint);
+                    }else {
+                        canvas.drawLine(solidPoints[i].x,mLinePosY,solidPoints[i].y,mLinePosY, linePaint);
+                    }
+                }
+                break;
+            case INPUT_LINE_UNDER_TEXT:
+                mLinePosY=baseLine+lineWidth;
+                for (int i=0;i<textSize;i++){
+                    if (inputLength>i){
+                        canvas.drawText(codeBuilder.toString(), i,i+1, solidPoints[i].y-solidLine/2,baseLine,textPaint);
+                    }
+                    canvas.drawLine(solidPoints[i].x,mLinePosY,solidPoints[i].y,mLinePosY, linePaint);
+                }
+                break;
+
         }
     }
 
@@ -239,14 +270,8 @@ public class VerifyCodeView extends View {
      */
     private void calculateStartAndEndPoint(int textSize){
         solidPoints = new PointF[textSize];
-        blankPoints = new PointF[textSize];
         for (int i=1;i<=textSize;i++){
             solidPoints[i-1]=new PointF((i-1)*blankLine+(i-1)*solidLine,(i-1)*blankLine+i*solidLine);
-            if (i==1){
-                blankPoints[0]=new PointF(0,0);
-                continue;
-            }
-            blankPoints[i-1]=new PointF((i-1)*blankLine+(i-1)*solidLine,i*blankLine+(i-1)*solidLine);
         }
     }
 
@@ -258,7 +283,7 @@ public class VerifyCodeView extends View {
         return textColor;
     }
 
-    public void setTextColor(int textColor) {
+    public void setTextColor(@ColorRes int textColor) {
         this.textColor = textColor;
     }
 
@@ -290,5 +315,16 @@ public class VerifyCodeView extends View {
      */
     public void setFont(String path) {
         typeface=Typeface.createFromAsset(getContext().getAssets(),path);
+    }
+
+    /**
+     * define input line's style
+     * @param lineStyle
+     * In addition, the lineStyle variation must be one of
+     * {@link VerifyCodeView#INPUT_NO_LINE},
+     * {@link VerifyCodeView#INPUT_LINE_UNDER_TEXT}
+     */
+    public void setLineStyle(@LineStyle int lineStyle) {
+        this.lineStyle = lineStyle;
     }
 }

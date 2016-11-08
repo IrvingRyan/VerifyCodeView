@@ -1,84 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/color_0288d1">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 
-    <LinearLayout
-        android:id="@+id/ll"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/px_30.0_dp"
-        android:layout_marginRight="@dimen/px_30.0_dp"
-        android:layout_marginTop="@dimen/px_20.0_dp"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/px_74.0_dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/px_10.0_dp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/Color_ffffff"
-            android:id="@+id/Tv_SentToNumber"
-            android:gravity="center"
-            android:text="@string/one_time_password_hint"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px_40.0_dp"/>
-        <com.github.irvingryan.VerifyCodeView
-            android:layout_width="wrap_content"
-            android:id="@+id/etOTP"
-            app:vcTextColor="@color/Color_ffffff"
-            app:vcTextSize="6"
-            app:vcFont="@string/my_font"
-            app:vcLineWidth="@dimen/px_4.0_dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"/>
+        android:layout_marginLeft="@dimen/px_10.0_dp"
+        android:text="1.default" />
 
-    </LinearLayout>
+    <com.github.irvingryan.VerifyCodeView
+        android:id="@+id/defaultVc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:vcLineWidth="@dimen/px_2.0_dp" />
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="@dimen/px_30.0_dp"
-        android:layout_marginRight="@dimen/px_30.0_dp"
-        android:orientation="vertical"
-        >
-        <Button
-            android:id="@+id/btVerify"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px_40.0_dp"
-            android:background="@drawable/button_selector"
-            android:text="@string/Verify"
-            android:textAllCaps="false"
-            android:textColor="@android:color/background_dark"
-            android:textSize="@dimen/px_14.0_dp" />
+        android:layout_marginLeft="@dimen/px_10.0_dp"
+        android:text="2.length and color" />
 
-        <Button
-            android:id="@+id/request_otp_btn"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px_53.0_dp"
-            android:text="@string/ResendOTP"
-            android:background="@android:color/transparent"
-            android:textAllCaps="false"
-            android:gravity="bottom|center_horizontal"
-            android:textColor="@color/Color_ffffff"
-            android:textSize="@dimen/px_12.0_dp"
-            />
-        <TextView
-            android:id="@+id/Tv_NotThisNumber"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:layout_height="@dimen/px_53.0_dp"
-            android:textSize="@dimen/px_12.0_dp"
-            android:text="@string/sms_verify_code_not_this_number"
-            android:textColor="@color/Color_ffffff" />
-    </LinearLayout>
+    <com.github.irvingryan.VerifyCodeView
+        android:id="@+id/lengthVc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:vcLineWidth="@dimen/px_2.0_dp"
+        app:vcTextColor="@color/colorAccent"
+        app:vcTextSize="6" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/px_10.0_dp"
+        android:text="3.custom font" />
 
-</RelativeLayout>
+    <com.github.irvingryan.VerifyCodeView
+        android:id="@+id/fontVc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:vcFont="@string/my_font"
+        app:vcLineWidth="@dimen/px_2.0_dp"
+        app:vcTextColor="@color/colorAccent"
+        app:vcTextSize="6" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="@dimen/px_10.0_dp"
+        android:text="4.custom line style" />
+
+    <com.github.irvingryan.VerifyCodeView
+        android:id="@+id/lineStyleVc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:vcFont="@string/my_font"
+        app:vcLineWidth="@dimen/px_2.0_dp"
+        app:vcTextColor="@color/colorAccent"
+        app:vcLineStyle="underText"
+        app:vcTextSize="6" />
+</LinearLayout>

@@ -1,15 +1,16 @@
 ## VerifyCodeView
 An Android custom view which is used for inputting OTP code.
 
-###Default Style
+###Simple Use
 ![](./pic/pic1.png)
-###Custom Style
-![](./pic/pic2.png)
+###Demo
+![](./pic/demo.gif)
+
 ## Usage
 
 1. Include the library as local library project.
 
-    `compile 'com.github.irvingryan:verifycodeview:1.0.2'`
+    `compile 'com.github.irvingryan:verifycodeview:1.1.0'`
 
 2. in your layout.xml
 
@@ -28,6 +29,7 @@ An Android custom view which is used for inputting OTP code.
     |vcTextSize|integer|code's lenght|
     |vcFont|string|font path in assets|
     |vcLineWidth|dimension|background line's width|
+    |vcLineStyle|enum|show/hide lines|
     ######xml code
     ```
      <!--your text color-->

@@ -26,7 +26,7 @@ public class VerifyOtpActivity extends AppCompatActivity{
             @Override
             public void afterTextChanged(String text) {
 
-                Toast.makeText(VerifyOtpActivity.this,text,Toast.LENGTH_SHORT).show();
+//                Toast.makeText(VerifyOtpActivity.this,text,Toast.LENGTH_SHORT).show();
             }
         });
     }
