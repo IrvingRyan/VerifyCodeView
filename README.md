@@ -40,6 +40,8 @@ An Android custom view which is used for inputting OTP code.
      app:vcFont="[font name]"
      <!--background line's width-->
      app:vcLineWidth="4px"
+     <!--background line's style-->
+     app:vcLineStyle="underText"
     ```
 
 3. in your activity
