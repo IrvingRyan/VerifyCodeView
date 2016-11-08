@@ -133,7 +133,7 @@ public class VerifyCodeView extends View {
         requestFocus();//must have focus to show the keyboard
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             // touch down
-            Log.d(TAG, "ACTION_DOWN");
+//            Log.d(TAG, "ACTION_DOWN");
             // show the keyboard so we can enter text
             InputMethodManager imm = (InputMethodManager) getContext()
                     .getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -152,7 +152,7 @@ public class VerifyCodeView extends View {
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        Log.i(TAG," keycode == "+keyCode);
+//        Log.i(TAG," keycode == "+keyCode);
         if (codeBuilder==null)codeBuilder=new StringBuilder();
         //67 is backspace,7-16 are 0-9
         if (keyCode == 67 && codeBuilder.length() > 0) {
@@ -178,7 +178,7 @@ public class VerifyCodeView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        Log.i(TAG,"onMeasure");
+//        Log.i(TAG,"onMeasure");
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
