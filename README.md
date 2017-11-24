@@ -1,9 +1,12 @@
 ## VerifyCodeView
 An Android custom view which is used for inputting OTP code.
 
-###Simple Use
+### Simple Use
+
 ![](./pic/pic1.png)
-###Demo
+
+### Demo
+
 ![](./pic/demo.gif)
 
 ## Usage
@@ -21,20 +24,22 @@ An Android custom view which is used for inputting OTP code.
              android:layout_height="wrap_content"/>
     ```
     **Custom**
-    
-    ######Attributes
-    |custom attributes|format|more|
-    | :---:|:---:|:---: |
-    |vcTextColor|color|your text color|
-    |vcTextSize|integer|code's lenght|
-    |vcFont|string|font path in assets|
-    |vcLineWidth|dimension|background line's width|
-    |vcLineStyle|enum|show/hide lines|
-    ######xml code
+
+    ###### Attributes
+
+    | custom attributes | format    | more                    |
+    | :---------------- | :-------- | :---------------------- |
+    | vcTextColor       | color     | your text color         |
+    | vcTextSize        | integer   | code's lenght           |
+    | vcFont            | string    | font path in assets     |
+    | vcLineWidth       | dimension | background line's width |
+    | vcLineStyle       | enum      | show/hide lines         |
+
+    ###### xml code
     ```
      <!--your text color-->
      app:vcTextColor="[your color]"
-     <!--code's lenght-->
+     <!--code's lenght-->`
      app:vcTextSize="6"
      <!--font file in assets-->
      app:vcFont="[font name]"
@@ -55,7 +60,7 @@ An Android custom view which is used for inputting OTP code.
             });
     ```
 
-##Licence
+## Licence
  Copyright 2016 IrvingRyan
 
  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
