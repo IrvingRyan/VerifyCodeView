@@ -1,11 +1,11 @@
 ## VerifyCodeView
 An Android custom view which is used for inputting OTP code.
 
-###Simple Use
+### Simple Use
 
 ![](./pic/pic1.png)
 
-###Demo
+### Demo
 
 ![](./pic/demo.gif)
 
@@ -25,7 +25,7 @@ An Android custom view which is used for inputting OTP code.
     ```
     **Custom**
 
-    ######Attributes
+    ###### Attributes
 
     | custom attributes | format    | more                    |
     | :---------------- | :-------- | :---------------------- |
@@ -35,7 +35,7 @@ An Android custom view which is used for inputting OTP code.
     | vcLineWidth       | dimension | background line's width |
     | vcLineStyle       | enum      | show/hide lines         |
 
-    ######xml code
+    ###### xml code
     ```
      <!--your text color-->
      app:vcTextColor="[your color]"
@@ -60,7 +60,7 @@ An Android custom view which is used for inputting OTP code.
             });
     ```
 
-##Licence
+## Licence
  Copyright 2016 IrvingRyan
 
  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
