@@ -252,9 +252,9 @@ public class VerifyCodeView extends View {
     public void setText(String code){
         if (code==null)
             throw new NullPointerException("Code must not null!");
-        if (code.length()>4){
-            throw new IllegalArgumentException("Code must less than 4 letters!");
-        }
+//         if (code.length()>4){
+//             throw new IllegalArgumentException("Code must less than 4 letters!");
+//         }
         codeBuilder=new StringBuilder();
         codeBuilder.append(code);
         invalidate();
