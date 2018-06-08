@@ -148,7 +148,12 @@ public class VerifyCodeView extends View {
     @Override
     public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
         //define keyboard to number keyboard
-        BaseInputConnection fic = new BaseInputConnection(this, false);
+        BaseInputConnection fic = new BaseInputConnection(this, false) {
+            @Override
+            public boolean deleteSurroundingText(int beforeLength, int afterLength) {
+                return sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL)) && sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DEL));
+            }
+        };
         outAttrs.actionLabel = null;
         outAttrs.inputType = InputType.TYPE_CLASS_NUMBER;
         outAttrs.imeOptions = EditorInfo.IME_ACTION_NEXT;
